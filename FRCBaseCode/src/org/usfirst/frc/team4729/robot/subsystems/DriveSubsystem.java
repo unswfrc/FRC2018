@@ -5,6 +5,8 @@ import org.usfirst.frc.team4729.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 /**
@@ -60,10 +62,10 @@ public class DriveSubsystem extends Subsystem {
 
         SmartDashboard.putString("#2", "Setting values");
 
-        leftFrontDrive.set(forwardSpeed*speed - turnSpeed*speed);
-        leftBackDrive.set(forwardSpeed*speed - turnSpeed*speed);
-        rightFrontDrive.set(forwardSpeed*speed + turnSpeed*speed);
-        rightBackDrive.set(forwardSpeed*speed + turnSpeed*speed);
+        leftFrontDrive.set(ControlMode.Velocity, forwardSpeed*speed - turnSpeed*speed);
+        leftBackDrive.set(ControlMode.Velocity, forwardSpeed*speed - turnSpeed*speed);
+        rightFrontDrive.set(ControlMode.Velocity, forwardSpeed*speed + turnSpeed*speed);
+        rightBackDrive.set(ControlMode.Velocity, forwardSpeed*speed + turnSpeed*speed);
     }
 
 
@@ -95,10 +97,10 @@ public class DriveSubsystem extends Subsystem {
         rightSpeed += (desiredRight-rightSpeed)*acceleration;
         leftSpeed += (desiredLeft-leftSpeed)*acceleration;
 
-        leftFrontDrive.set(leftSpeed*speed);
-        leftBackDrive.set(leftSpeed*speed);
-        rightFrontDrive.set(rightSpeed*speed);
-        rightBackDrive.set(rightSpeed*speed);
+        leftFrontDrive.set(ControlMode.Velocity, leftSpeed*speed);
+        leftBackDrive.set(ControlMode.Velocity, leftSpeed*speed);
+        rightFrontDrive.set(ControlMode.Velocity, rightSpeed*speed);
+        rightBackDrive.set(ControlMode.Velocity, rightSpeed*speed);
     }
 
 }
