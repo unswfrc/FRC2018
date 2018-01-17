@@ -13,10 +13,10 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
  *
  */
 public class DriveSubsystem extends Subsystem {
-    TalonSRX leftFrontDrive = new TalonSRX(1);
-    TalonSRX leftBackDrive = new TalonSRX(2);
-    TalonSRX rightFrontDrive = new TalonSRX(3);
-    TalonSRX rightBackDrive = new TalonSRX(4);
+    TalonSRX leftFrontDrive;
+    TalonSRX leftBackDrive;
+    TalonSRX rightFrontDrive;
+    TalonSRX rightBackDrive; 
 
     double leftSpeed = 0;
     double rightSpeed = 0;
@@ -27,6 +27,13 @@ public class DriveSubsystem extends Subsystem {
     double speed = 1;
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
+    
+    public DriveSubsystem() {
+    	leftFrontDrive = new TalonSRX(1);
+    	leftBackDrive = new TalonSRX(2);
+    	rightFrontDrive = new TalonSRX(3);
+    	rightBackDrive = new TalonSRX(4);
+    }
 
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
@@ -62,10 +69,10 @@ public class DriveSubsystem extends Subsystem {
 
         SmartDashboard.putString("#2", "Setting values");
 
-        leftFrontDrive.set(ControlMode.Velocity, forwardSpeed*speed - turnSpeed*speed);
-        leftBackDrive.set(ControlMode.Velocity, forwardSpeed*speed - turnSpeed*speed);
-        rightFrontDrive.set(ControlMode.Velocity, forwardSpeed*speed + turnSpeed*speed);
-        rightBackDrive.set(ControlMode.Velocity, forwardSpeed*speed + turnSpeed*speed);
+        leftFrontDrive.set(ControlMode.PercentOutput, forwardSpeed*speed - turnSpeed*speed);
+        leftBackDrive.set(ControlMode.PercentOutput, forwardSpeed*speed - turnSpeed*speed);
+        rightFrontDrive.set(ControlMode.PercentOutput, forwardSpeed*speed + turnSpeed*speed);
+        rightBackDrive.set(ControlMode.PercentOutput, forwardSpeed*speed + turnSpeed*speed);
     }
 
 
@@ -97,10 +104,10 @@ public class DriveSubsystem extends Subsystem {
         rightSpeed += (desiredRight-rightSpeed)*acceleration;
         leftSpeed += (desiredLeft-leftSpeed)*acceleration;
 
-        leftFrontDrive.set(ControlMode.Velocity, leftSpeed*speed);
-        leftBackDrive.set(ControlMode.Velocity, leftSpeed*speed);
-        rightFrontDrive.set(ControlMode.Velocity, rightSpeed*speed);
-        rightBackDrive.set(ControlMode.Velocity, rightSpeed*speed);
+        leftFrontDrive.set(ControlMode.PercentOutput, leftSpeed*speed);
+        leftBackDrive.set(ControlMode.PercentOutput, leftSpeed*speed);
+        rightFrontDrive.set(ControlMode.PercentOutput, rightSpeed*speed);
+        rightBackDrive.set(ControlMode.PercentOutput, rightSpeed*speed);
     }
 
 }
