@@ -16,7 +16,10 @@ public class DriveSubsystem extends Subsystem {
     TalonSRX leftFrontDrive;
     TalonSRX leftBackDrive;
     TalonSRX rightFrontDrive;
-    TalonSRX rightBackDrive; 
+    TalonSRX rightBackDrive;
+    
+    Encoder leftEncoder;
+    Encoder rightEncoder;
 
     double leftSpeed = 0;
     double rightSpeed = 0;
@@ -29,10 +32,21 @@ public class DriveSubsystem extends Subsystem {
     // here. Call these from Commands.
     
     public DriveSubsystem() {
-    	leftFrontDrive = new TalonSRX(1);
-    	leftBackDrive = new TalonSRX(2);
-    	rightFrontDrive = new TalonSRX(3);
-    	rightBackDrive = new TalonSRX(4);
+    	leftFrontDrive = new TalonSRX(RobotMap.MOTOR_LEFT_FRONT);
+    	leftBackDrive = new TalonSRX(RobotMap.MOTOR_LEFT_BACK);
+    	rightFrontDrive = new TalonSRX(RobotMap.MOTOR_RIGHT_FRONT);
+    	rightBackDrive = new TalonSRX(RobotMap.MOTOR_RIGHT_BACK);
+    	
+    	leftEncoder = new Encoder(RobotMap.ENCODER_LEFT_A, RobotMap.ENCODER_LEFT_B, RobotMap.ENCODER_LEFT_INDEX);
+    	leftEncoder.setMaxPeriod(0.1);
+    	leftEncoder.setMinRate(10);
+    	leftEncoder.setDistancePerPulse(5);
+    	leftEncoder.setSamplesToAverage(7);
+    	rightEncoder = new Encoder(RobotMap.ENCODER_LEFT_A, RobotMap.ENCODER_LEFT_B, RobotMap.ENCODER_LEFT_INDEX);
+    	rightEncoder.setMaxPeriod(0.1);
+    	rightEncoder.setMinRate(10);
+    	rightEncoder.setDistancePerPulse(5);
+    	rightEncoder.setSamplesToAverage(7);
     }
 
     public void initDefaultCommand() {
@@ -67,15 +81,11 @@ public class DriveSubsystem extends Subsystem {
         turnSpeed += (desiredTurn-turnSpeed)*acceleration;
         forwardSpeed += (desiredMove-forwardSpeed)*acceleration;
 
-        SmartDashboard.putString("#2", "Setting values");
-
-        leftFrontDrive.set(ControlMode.PercentOutput, forwardSpeed*speed - turnSpeed*speed);
-        leftBackDrive.set(ControlMode.PercentOutput, forwardSpeed*speed - turnSpeed*speed);
-        rightFrontDrive.set(ControlMode.PercentOutput, forwardSpeed*speed + turnSpeed*speed);
-        rightBackDrive.set(ControlMode.PercentOutput, forwardSpeed*speed + turnSpeed*speed);
+        power (forwardSpeed*speed - turnSpeed*speed,
+        	   forwardSpeed*speed - turnSpeed*speed,
+        	   forwardSpeed*speed + turnSpeed*speed,
+        	   forwardSpeed*speed + turnSpeed*speed);
     }
-
-
 
     public void tank (double desiredLeft, double desiredRight) {
         if ((desiredLeft < 0.1) && (desiredLeft > -0.1)){
@@ -104,11 +114,14 @@ public class DriveSubsystem extends Subsystem {
         rightSpeed += (desiredRight-rightSpeed)*acceleration;
         leftSpeed += (desiredLeft-leftSpeed)*acceleration;
 
-        leftFrontDrive.set(ControlMode.PercentOutput, leftSpeed*speed);
-        leftBackDrive.set(ControlMode.PercentOutput, leftSpeed*speed);
-        rightFrontDrive.set(ControlMode.PercentOutput, rightSpeed*speed);
-        rightBackDrive.set(ControlMode.PercentOutput, rightSpeed*speed);
+        power (leftSpeed*speed, leftSpeed*speed, rightSpeed*speed, rightSpeed*speed);
     }
-
+    
+    public void power (double leftFront, double leftBack, double rightFront, double rightBack) {
+    	leftFrontDrive.set(ControlMode.PercentOutput, leftFront);
+        leftBackDrive.set(ControlMode.PercentOutput, leftBack);
+        rightFrontDrive.set(ControlMode.PercentOutput, rightFront);
+        rightBackDrive.set(ControlMode.PercentOutput, rightBack);
+    }
 }
 
