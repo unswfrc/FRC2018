@@ -18,13 +18,13 @@ import org.usfirst.frc.team4729.robot.commands.TwoStickTank;
  * Put all commands on whichever button you want to activate it, using whenPressed or whileHeld depending on which behaviour you want to cause it
  */
 
- /**
+/**
  * 
  * @author FRC
  *
  */
 public class OI {
-	Joystick leftStick   = new Joystick(0);
+    Joystick leftStick   = new Joystick(0);
     Joystick rightStick  = new Joystick(1);
     Joystick xbox        = new Joystick(2);
     Button button1       = new JoystickButton(leftStick,  1);
@@ -59,42 +59,42 @@ public class OI {
     Button select        = new JoystickButton(xbox,       8);
     Button l3            = new JoystickButton(xbox,       9);
     Button r3            = new JoystickButton(xbox,       10);
-    
+
     public OI() {
-    	//button1.whileHeld  ();
-    	button2.whenPressed (new OneStickTank(leftStick));
-    	button3.whenPressed (new TwoStickTank(leftStick, rightStick));
-    	button4.whenPressed (new OneStickArcade(leftStick));
-    	button5.whenPressed (new TwoStickArcade(leftStick, rightStick));
-    	//button6.whenPressed ();
-    	//button7.whenPressed ();
-    	//button8.whileHeld ();
-    	//button9.whileHeld ();
-    	//button10.whileHeld ();
-    	//button11.whileHeld ();
-    	//rightButton1.whenPressed ();
-    	//rightButton2.whileHeld ();
-    	//rightButton3.whenPressed ();
-    	//rightButton4.whileHeld ();
-    	//rightButton5.whileHeld ();
-    	//rightButton6.whileHeld ();
-    	//rightButton7.whileHeld ();
-    	//rightButton8.whileHeld ();
-    	//rightButton9.whileHeld ();
-    	//rightButton10.whileHeld ();
-    	//rightButton11.whileHeld ();
-    	//a.whileHeld ();
-    	//b.whileHeld ();
-    	//x.whileHeld ();
-    	//y.whileHeld ();
-    	//lb.whileHeld ();
-    	//rb.whileHeld ();
-    	//start.whileHeld();
-    	//select.whileHeld();
-    	//l3.whileHeld ();
-    	//r3.whileHeld ();
-    	
-    	
+        //button1.whileHeld  ();
+        button2.whenPressed (new OneStickTank(leftStick));
+        button3.whenPressed (new TwoStickTank(leftStick, rightStick));
+        button4.whenPressed (new OneStickArcade(leftStick));
+        button5.whenPressed (new TwoStickArcade(leftStick, rightStick));
+        //button6.whenPressed ();
+        //button7.whenPressed ();
+        //button8.whileHeld ();
+        //button9.whileHeld ();
+        //button10.whileHeld ();
+        //button11.whileHeld ();
+        //rightButton1.whenPressed ();
+        //rightButton2.whileHeld ();
+        //rightButton3.whenPressed ();
+        //rightButton4.whileHeld ();
+        //rightButton5.whileHeld ();
+        //rightButton6.whileHeld ();
+        //rightButton7.whileHeld ();
+        //rightButton8.whileHeld ();
+        //rightButton9.whileHeld ();
+        //rightButton10.whileHeld ();
+        //rightButton11.whileHeld ();
+        //a.whileHeld ();
+        //b.whileHeld ();
+        //x.whileHeld ();
+        //y.whileHeld ();
+        //lb.whileHeld ();
+        //rb.whileHeld ();
+        //start.whileHeld();
+        //select.whileHeld();
+        //l3.whileHeld ();
+        //r3.whileHeld ();
+
+
     }
     //// CREATING BUTTONS
     // One type of button is a joystick button which is any button on a joystick.
@@ -102,23 +102,23 @@ public class OI {
     // number it is.
     // Joystick stick = new Joystick(port);
     // Button button = new JoystickButton(stick, buttonNumber);
-    
+
     // There are a few additional built in buttons you can use. Additionally,
     // by subclassing Button you can create custom triggers and bind those to
     // commands the same as any other Button.
-    
+
     //// TRIGGERING COMMANDS WITH BUTTONS
     // Once you have a button, it's trivial to bind it to a button in one of
     // three ways:
-    
+
     // Start the command when the button is pressed and let it run the command
     // until it is finished as determined by it's isFinished method.
     // button.whenPressed(new ExampleCommand());
-    
+
     // Run the command while the button is being held down and interrupt it once
     // the button is released.
     // button.whileHeld(new ExampleCommand());
-    
+
     // Start the command when the button is released  and let it run the command
     // until it is finished as determined by it's isFinished method.
     // button.whenReleased(new ExampleCommand());

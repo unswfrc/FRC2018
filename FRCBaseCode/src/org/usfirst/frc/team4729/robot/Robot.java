@@ -20,8 +20,8 @@ import org.usfirst.frc.team4729.robot.subsystems.DriveSubsystem;
  */
 public class Robot extends IterativeRobot {
 
-	public static DriveSubsystem driveSubsystem;
-	public static OI oi;
+    public static DriveSubsystem driveSubsystem;
+    public static OI oi;
 
     Command autonomousCommand;
     SmartDashboard smartDashboard;
@@ -31,14 +31,14 @@ public class Robot extends IterativeRobot {
      * used for any initialization code.
      */
     public void robotInit() {
-    	driveSubsystem = new DriveSubsystem();
-		oi = new OI();
+        driveSubsystem = new DriveSubsystem();
+        oi = new OI();
         // instantiate the command used for the autonomous period
     }
-	
-	public void disabledPeriodic() {
-		Scheduler.getInstance().run();
-	}
+
+    public void disabledPeriodic() {
+        Scheduler.getInstance().run();
+    }
 
     public void autonomousInit() {
         // schedule the autonomous command (example)
@@ -53,17 +53,17 @@ public class Robot extends IterativeRobot {
     }
 
     public void teleopInit() {
-		// This makes sure that the autonomous stops running when
+        // This makes sure that the autonomous stops running when
         // teleop starts running. If you want the autonomous to 
         // continue until interrupted by another command, remove
         // this line or comment it out.
         if (autonomousCommand != null) autonomousCommand.cancel();
-    	SmartDashboard.putString("#1", "Auto started");
-        
+        SmartDashboard.putString("#1", "Auto started");
+
         Joystick leftStick = new Joystick(0);
         Joystick rightStick = new Joystick(1);
         TwoStickArcade twoStickArcade = new TwoStickArcade(leftStick, rightStick);
-        
+
         twoStickArcade.start();
     }
 
@@ -81,7 +81,7 @@ public class Robot extends IterativeRobot {
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
     }
-    
+
     /**
      * This function is called periodically during test mode
      */

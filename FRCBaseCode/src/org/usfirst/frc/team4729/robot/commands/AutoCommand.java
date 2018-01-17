@@ -6,14 +6,14 @@ import edu.wpi.first.wpilibj.command.Command;
  *this was created on july 4 the day jason blossum died
  */
 public class AutoCommand extends Command {
-	
-	Command moveForward;
-	Command moveBackwards;
+
+    Command moveForward;
+    Command moveBackwards;
 
     public AutoCommand() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	
+
     }
 
     // Called just before this Command runs the first time

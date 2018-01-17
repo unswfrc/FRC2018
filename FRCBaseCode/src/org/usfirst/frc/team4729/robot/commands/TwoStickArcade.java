@@ -9,24 +9,24 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  *
  */
 public class TwoStickArcade extends Command {
-	Joystick leftStick;
-	Joystick rightStick;
+    Joystick leftStick;
+    Joystick rightStick;
     public TwoStickArcade(Joystick leftStick, Joystick rightStick) {
-    	requires(Robot.driveSubsystem);
-    	this.leftStick = leftStick;
-    	this.rightStick = rightStick;
+        requires(Robot.driveSubsystem);
+        this.leftStick = leftStick;
+        this.rightStick = rightStick;
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	SmartDashboard.putString("Drive Type", "2 Stick Arcade");
+        SmartDashboard.putString("Drive Type", "2 Stick Arcade");
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.driveSubsystem.arcade(leftStick.getY(), rightStick.getX());
+        Robot.driveSubsystem.arcade(leftStick.getY(), rightStick.getX());
     }
 
     // Make this return true when this Command no longer needs to run execute()
