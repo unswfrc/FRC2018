@@ -8,10 +8,12 @@ import edu.wpi.first.wpilibj.command.Command;
 public class AutoCommand extends Command {
 	
 	Command moveForward;
+	Command moveBackwards;
 
     public AutoCommand() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
+    	
     }
 
     // Called just before this Command runs the first time
