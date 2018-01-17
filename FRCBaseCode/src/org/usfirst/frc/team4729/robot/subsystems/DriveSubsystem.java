@@ -2,7 +2,10 @@ package org.usfirst.frc.team4729.robot.subsystems;
 
 import org.usfirst.frc.team4729.robot.Robot;
 
+import com.ctre.CANTalon;
+
 import edu.wpi.first.wpilibj.RobotDrive;
+import edu.wpi.first.wpilibj.TalonSRX;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -10,7 +13,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  *
  */
 public class DriveSubsystem extends Subsystem {
-	RobotDrive driveTrain = new RobotDrive(0, 1);
+	TalonSRX leftFrontDrive = new TalonSRX(1);
+	TalonSRX leftBackDrive = new TalonSRX(2);
+	TalonSRX rightFrontDrive = new TalonSRX(3);
+	TalonSRX rightBackDrive = new TalonSRX(4);
 	
 	double leftSpeed = 0;
 	double rightSpeed = 0;
@@ -53,7 +59,13 @@ public class DriveSubsystem extends Subsystem {
     	
     	turnSpeed += (desiredTurn-turnSpeed)*acceleration;
     	forwardSpeed += (desiredMove-forwardSpeed)*acceleration;
-    	driveTrain.arcadeDrive(-forwardSpeed*speed, -turnSpeed*speed);
+    	
+    	SmartDashboard.putString("#2", "Setting values");
+    	
+    	leftFrontDrive.set(forwardSpeed*speed - turnSpeed*speed);
+    	leftBackDrive.set(forwardSpeed*speed - turnSpeed*speed);
+    	rightFrontDrive.set(forwardSpeed*speed + turnSpeed*speed);
+    	rightBackDrive.set(forwardSpeed*speed + turnSpeed*speed);
     }
     
     
@@ -84,6 +96,11 @@ public class DriveSubsystem extends Subsystem {
     	}
     	rightSpeed += (desiredRight-rightSpeed)*acceleration;
     	leftSpeed += (desiredLeft-leftSpeed)*acceleration;
+    	
+    	leftFrontDrive.set(leftSpeed*speed);
+    	leftBackDrive.set(leftSpeed*speed);
+    	rightFrontDrive.set(rightSpeed*speed);
+    	rightBackDrive.set(rightSpeed*speed);
 	}
     
 }
