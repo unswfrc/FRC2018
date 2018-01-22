@@ -58,7 +58,6 @@ public class Robot extends IterativeRobot {
         // continue until interrupted by another command, remove
         // this line or comment it out.
         if (autonomousCommand != null) autonomousCommand.cancel();
-        SmartDashboard.putString("#1", "Auto started");
 
         Joystick leftStick = new Joystick(0);
         Joystick rightStick = new Joystick(1);

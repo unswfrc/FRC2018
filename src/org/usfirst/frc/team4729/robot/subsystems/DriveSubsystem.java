@@ -117,6 +117,10 @@ public class DriveSubsystem extends Subsystem {
         power (leftSpeed*speed, leftSpeed*speed, rightSpeed*speed, rightSpeed*speed);
     }
     
+    public void updateEncoders () {
+    	
+    }
+    
     public void power (double leftFront, double leftBack, double rightFront, double rightBack) {
     	leftFrontDrive.set(ControlMode.PercentOutput, leftFront);
         leftBackDrive.set(ControlMode.PercentOutput, leftBack);
