@@ -63,13 +63,6 @@ public class DriveSubsystem extends Subsystem {
             turnSpeed = 0;
         }
 
-        if  (((desiredMove > 0) && (forwardSpeed < 0)) || ((desiredMove < 0) && (forwardSpeed > 0))){
-            forwardSpeed = 0;
-        }
-        if (((desiredTurn > 0) && (turnSpeed < 0)) || ((desiredTurn < 0) && (turnSpeed > 0))){
-            turnSpeed = 0;
-        }
-
         if (Math.abs(desiredMove) < Math.abs(forwardSpeed)){
             forwardSpeed = desiredMove;
         }
